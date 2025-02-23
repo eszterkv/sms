@@ -1,0 +1,17 @@
+{
+  "name": "sms-chatgpt",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "node api/sms.js",
+    "lint": "standard"
+  },
+  "dependencies": {
+    "twilio": "^4.0.0",
+    "openai": "^4.0.0"
+  },
+  "devDependencies": {
+    "standard": "^17.0.0",
+    "vercel": "^32.0.0"
+  }
+} 
