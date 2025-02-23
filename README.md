@@ -6,12 +6,21 @@ This project integrates Twilio's SMS service with OpenAI's ChatGPT to provide au
 
 I use a dumb phone as my daily driver, and the only missing feature was ChatGPT integration. Here it is.
 
-## Approximated costs (100 messages/month)
+## Approximated costs
+
+**DISCLAIMER:** My calculations are an estimate and specific to my geography and usage. Please do your own math before using it. All responsibility for the correctness of the calculations and incurred costs is yours.
+
+### 100 messages/month
+
 - Twilio: $3 (phone number) + $7.90 (outbound SMS @ $0.079/msg) + $3.80 (inbound SMS @ $0.038/msg) = $14.70
 - OpenAI API: ~$0.05
 - Total: ~$14.75/month
 
-A lower-usage estimate (30 messages/month) would be $3 (phone number) + $2.37 (outbound SMS) + $1.14 (inbound SMS) = $6.51/month.
+### 30 messages/month
+
+- Twilio: $3 (phone number) + $2.37 (outbound SMS) + $1.14 (inbound SMS) = $6.51/month
+- OpenAI API: ~$0.015
+- Total: ~$6.53/month
 
 ## Installation
 
