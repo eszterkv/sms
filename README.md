@@ -3,9 +3,9 @@
 This project integrates Twilio's SMS service with OpenAI's ChatGPT to provide automated responses to SMS messages.
 
 ## Costs (200 messages/month)
-- Twilio: $1.00 (phone number) + $1.58 (SMS) = $2.58
+- Twilio: $3 (phone number) + $1.58 (SMS) = $4.58
 - OpenAI API: ~$0.10
-- Total: ~$2.68/month
+- Total: ~$4.68/month
 
 ## Installation
 
@@ -26,7 +26,7 @@ npm run dev
 ## Setup Twilio
 
 1. Sign up for a Twilio account
-2. Get a phone number
+2. Get a phone number (preferably a local number or a number in the EU — some countries are cheaper than others)
 3. Set up webhook URL in Twilio dashboard to point to your deployment URL:
    - If using Vercel: `https://your-project-name.vercel.app/api/sms`
 4. Configure environment variables
