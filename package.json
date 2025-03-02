@@ -1,5 +1,5 @@
 {
-  "name": "sms-chatgpt",
+  "name": "sms-services",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -7,11 +7,12 @@
     "lint": "standard"
   },
   "dependencies": {
-    "twilio": "^4.0.0",
-    "openai": "^4.0.0"
+    "openai": "^4.0.0",
+    "puppeteer": "^24.3.0",
+    "twilio": "^4.0.0"
   },
   "devDependencies": {
     "standard": "^17.0.0",
     "vercel": "^32.0.0"
   }
-} 
+}

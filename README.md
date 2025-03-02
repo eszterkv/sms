@@ -1,16 +1,20 @@
-# SMS ChatGPT
+# SMS services
 
-This project integrates Twilio's SMS service with OpenAI's ChatGPT to provide automated responses to SMS messages.
+This project allows you to send and receive SMS messages and run arbitrary services that are available via the API.
+
+Currently, it supports:
+- ChatGPT
+- aviation weather
 
 ## Motivation
 
-I use a dumb phone as my daily driver, and the only missing feature was ChatGPT integration. Here it is.
+I use a dumb phone as my daily driver. I started writing this service because I missed access to ChatGPT, and I have since expanded it to support other functionality.
 
 ## Approximate costs
 
 **DISCLAIMER:** My calculations are an estimate and specific to my geography and usage. Please do your own math before using it. All responsibility for the correctness of the calculations and incurred costs is yours.
 
-Important: You need to have a paid Twilio account and a paid OpenAI API account, both with available credits.
+Important: You need to have a paid SMS provider account and a paid OpenAI API account, both with available credits.
 
 OpenAI's free tier has a limited quota and will return `insufficient_quota` errors when exceeded. Visit https://platform.openai.com/account/billing to set up a paid account.
 
@@ -19,7 +23,6 @@ OpenAI's free tier has a limited quota and will return `insufficient_quota` erro
 - Twilio: $3 (phone number) + $7.90 (outbound SMS @ $0.079/msg) + $3.80 (inbound SMS @ $0.038/msg) = $14.70
 - OpenAI API: ~$0.05
 - Total: ~$14.75/month
-
 
 ### 30 messages/month
 
@@ -43,7 +46,9 @@ To start the development server, use:
 npm run dev
 ```
 
-## Setup Twilio
+## Setup an SMS provider
+
+### Twilio
 
 1. Sign up for a Twilio account
 2. Get a phone number (preferably a local number or a number in the EU — some countries are cheaper than others)
@@ -51,17 +56,30 @@ npm run dev
    - If using Vercel: `https://your-project-name.vercel.app/api/sms`
 4. Configure environment variables
 
+### Other providers
+
+Coming later.
+
 ## Environment Variables
 
-Make sure to set the following environment variables:
+### Must haves
 
-- `OPENAI_API_KEY`: Your OpenAI API key
+#### Basic configuration
+- `ALLOWED_PHONE_NUMBER`: Your phone number that is allowed to send messages
+Phone numbers must be in `+XXXXXXXXXXXX` format (e.g. `+12345678901`)
+
+#### SMS provider specific configuration
 - `TWILIO_ACCOUNT_SID`: Your Twilio Account SID
 - `TWILIO_AUTH_TOKEN`: Your Twilio Auth Token
 - `TWILIO_PHONE_NUMBER`: Your Twilio phone number
-- `ALLOWED_PHONE_NUMBER`: Your phone number that is allowed to send messages
 
-Phone numbers must be in `+XXXXXXXXXXXX` format (e.g. `+12345678901`)
+### Services
+
+#### ChatGPT
+- `OPENAI_API_KEY`: Your OpenAI API key
+
+#### Aviation weather
+Check specific providers for their configuration in `/api/providers/aviation/weather/XX.js` where XX is the ICAO country prefix.
 
 ## Known caveats
 
