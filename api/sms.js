@@ -32,8 +32,7 @@ module.exports = async (req, res) => {
       if (!response) throw new Error('No response from chatGPT')
     }
 
-    logger.info(`Sending response to ${fromNumber}: ${response}`)
-    //await smsProvider.sendMessage(fromNumber, response)
+    await smsProvider.sendMessage(fromNumber, response)
 
     return res.status(200).end()
   } catch (error) {
