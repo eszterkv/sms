@@ -10,16 +10,11 @@ class TwilioProvider {
 
   async sendMessage(to, body) {
     try {
-      const result = await this.client.messages.create({
+      await this.client.messages.create({
         body,
         to,
         from: process.env.TWILIO_PHONE_NUMBER
       })
-      return {
-        success: true,
-        messageId: result.sid,
-        provider: 'twilio'
-      }
     } catch (error) {
       throw new Error(`Twilio SMS sending failed: ${error.message}`)
     }
