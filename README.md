@@ -79,6 +79,8 @@ Phone numbers must be in `+XXXXXXXXXXXX` format (e.g. `+12345678901`)
 - `OPENAI_API_KEY`: Your OpenAI API key
 
 #### Aviation weather
+- `BROWSERLESS_TOKEN`: Your Browserless token for running the scraping service
+
 Check specific providers for their configuration in `/api/providers/aviation/weather/XX.js` where XX is the ICAO country prefix.
 
 ## Known caveats

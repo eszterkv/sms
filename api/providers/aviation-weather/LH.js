@@ -1,4 +1,4 @@
-const puppeteer = require('puppeteer')
+const puppeteer = require('puppeteer-core')
 
 class AviationWeatherHungary {
   constructor() {
@@ -12,7 +12,9 @@ class AviationWeatherHungary {
   }
 
   async initBrowser() {
-    if (!this.browser) this.browser = await puppeteer.launch({ headless: true })
+    if (!this.browser) this.browser = await puppeteer.connect({
+      browserWSEndpoint: `wss://production-sfo.browserless.io/?token=${process.env.BROWSERLESS_TOKEN}&proxy=residential`,
+    })
   }
 
   async getWeather(icao) {
@@ -35,6 +37,8 @@ class AviationWeatherHungary {
       return { metar: metar.trim(), taf: taf.trim() }
     } catch (error) {
       throw new Error(`Failed to fetch weather for ${icao.toUpperCase()}: ${error.message}`)
+    } finally {
+      if (this.browser) await this.browser.close()
     }
   }
 }
