@@ -4,7 +4,7 @@ This project allows you to send and receive SMS messages and run arbitrary servi
 
 Currently, it supports:
 - ChatGPT
-- aviation weather
+- aviation weather.
 
 ## Motivation
 
