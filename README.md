@@ -1,6 +1,6 @@
 # SMS services
 
-This project allows you to send and receive SMS messages and run arbitrary services that are available via the API.
+This project allows you to send and receive SMS messages and run arbitrary services.
 
 Currently, it supports:
 - ChatGPT
