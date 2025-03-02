@@ -5,7 +5,7 @@ class AviationWeather {
     try {
       const provider = require(`../providers/aviation-weather/${countryCode}`)
       const { metar, taf } = await provider.getWeather(icao)
-      return `${metar} /// ${taf}`
+      return `${metar} // ${taf}`
     } catch (error) {
       if (error.code === 'MODULE_NOT_FOUND') {
         return `ERR: no provider for country code: ${countryCode}`
