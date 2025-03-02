@@ -1,14 +1,9 @@
-const twilio = require('twilio')
 const { OpenAI } = require('openai')
+const smsProvider = require('./providers/twilio')
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY
 })
-
-const twilioClient = twilio(
-  process.env.TWILIO_ACCOUNT_SID,
-  process.env.TWILIO_AUTH_TOKEN
-)
 
 const logger = {
   error: (message, error) => {
@@ -17,14 +12,6 @@ const logger = {
   info: (message) => {
     process.stdout.write(`${message}\n`)
   }
-}
-
-const sendSMS = (to, body) => {
-  return twilioClient.messages.create({
-    body,
-    to,
-    from: process.env.TWILIO_PHONE_NUMBER
-  })
 }
 
 module.exports = async (req, res) => {
@@ -49,7 +36,7 @@ module.exports = async (req, res) => {
     })
 
     const response = completion.choices[0].message.content
-    await sendSMS(fromNumber, response)
+    await smsProvider.sendMessage(fromNumber, response)
 
     logger.info(`Processed message from ${fromNumber}`)
     return res.status(200).end()
