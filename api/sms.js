@@ -1,9 +1,5 @@
-const { OpenAI } = require('openai')
 const smsProvider = require('./providers/twilio')
-
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY
-})
+const chatGPT = require('./services/chatgpt')
 
 const logger = {
   error: (message, error) => {
@@ -23,25 +19,12 @@ module.exports = async (req, res) => {
       return res.status(403).end()
     }
 
-    const completion = await openai.chat.completions.create({
-      model: 'gpt-4o',
-      messages: [
-        {
-          role: 'system',
-          content: 'you are a helpful assistant. provide concise answers under 160 characters. please use lowercase letters.'
-        },
-        { role: 'user', content: userMessage }
-      ],
-      max_tokens: 60
-    })
-
-    const response = completion.choices[0].message.content
+    const response = await chatGPT.getAnswer(userMessage)
     await smsProvider.sendMessage(fromNumber, response)
 
-    logger.info(`Processed message from ${fromNumber}`)
     return res.status(200).end()
   } catch (error) {
     logger.error('Error processing SMS', error)
     return res.status(500).end()
   }
-} 
+}
